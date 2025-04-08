@@ -3,6 +3,7 @@ package com.co.certificacion.sofka.stepdefinitions;
 import com.co.certificacion.sofka.questions.VerificarInstancia;
 import com.co.certificacion.sofka.utils.UseHealenium;
 import io.cucumber.java.Before;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 
@@ -15,6 +16,8 @@ public class Hooks {
 
     @Before
     public void configuracionInicial() {
+        WebDriverManager.chromedriver().setup();
+
         OnStage.setTheStage(new OnlineCast());
 
         if (PERMITIR_IA) {
