@@ -19,6 +19,7 @@ public class UseHealenium implements Ability {
 
         WebDriverManager.chromedriver().setup();
         WebDriver delegate = new ChromeDriver(); // WebDriver base
+        System.out.println("Healenium URL: " + System.getProperty("url_healenium_backend"));
         Config config = ConfigFactory.parseFile(new File(URL_BACKEND_HEALENIUM));
         //WebDriver driverAutoCorrector = SelfHealingDriver.create(delegate); // Ejecución local
         SelfHealingDriver driverAutoCorrector = SelfHealingDriver.create(delegate, config);
