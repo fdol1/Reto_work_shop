@@ -19,6 +19,9 @@ public class IniciarSesionstepDefinition {
 
     @Dado("^que (.*) ingresa a la pagina de Swaglabas$")
     public void queFerIngresaALaPaginaDeSwaglabas(String actor) {
+        String url = System.getProperty("url_healenium_backend");
+        System.out.println("La URL Healenium es: " + url);
+
         if (PERMITIR_IA) {
             theActorCalled("Luis").can(UseHealenium.withSelfHealingDriver());
             theActorInTheSpotlight().attemptsTo(AbrirNavegador.enSwagLabs());
