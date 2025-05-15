@@ -11,6 +11,8 @@ public class UseHealenium implements Ability {
 
     public static BrowseTheWeb withSelfHealingDriver() {
 
+        System.setProperty("heal.server.url", "https://f344-191-156-44-110.ngrok-free.app");
+
         WebDriverManager.chromedriver().setup();
         WebDriver delegate = new ChromeDriver(); // WebDriver base
         WebDriver driverAutoCorrector = SelfHealingDriver.create(delegate); // WebDriver con Healenium

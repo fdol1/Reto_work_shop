@@ -24,7 +24,7 @@ public class Constantes {
     public static final String KEY_NOMBRE1 = "nombre1";
     public static final String KEY_NOMBRE2 = "nombre2";
     public static final String KEY_CODIGO_POSTAL = "codigoPostal";
-    public static boolean PERMITIR_IA = false;
+    public static boolean PERMITIR_IA = true;
 
 
 
