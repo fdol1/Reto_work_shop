@@ -11,28 +11,18 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
 
+import static com.co.certificacion.sofka.utils.Constantes.URL_BACKEND_HEALENIUM;
+
 public class UseHealenium implements Ability {
 
     public static BrowseTheWeb withSelfHealingDriver() {
 
         WebDriverManager.chromedriver().setup();
         WebDriver delegate = new ChromeDriver(); // WebDriver base
-
-        Config config = ConfigFactory.parseFile(new File("src\\test\\resources\\healenium.properties"));
-
-        //WebDriver driverAutoCorrector = SelfHealingDriver.create(delegate, config);
-        //WebDriver driverAutoCorrector = SelfHealingDriver.create(delegate); // WebDriver con Healenium
+        Config config = ConfigFactory.parseFile(new File(URL_BACKEND_HEALENIUM));
+        //WebDriver driverAutoCorrector = SelfHealingDriver.create(delegate); // Ejecución local
         SelfHealingDriver driverAutoCorrector = SelfHealingDriver.create(delegate, config);
-
-
         return BrowseTheWeb.with(driverAutoCorrector);
 
-
-      /* De esta manera se debe retornar un WebDriver
-        WebDriverManager.chromedriver().setup();
-        WebDriver baseDriver = new ChromeDriver();
-        WebDriver selfHealingDriver = SelfHealingDriver.create(baseDriver);
-        return selfHealingDriver;
-       */
     }
 }
