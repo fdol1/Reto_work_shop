@@ -1,21 +1,30 @@
 package com.co.certificacion.sofka.utils;
 
 import com.epam.healenium.SelfHealingDriver;
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import net.serenitybdd.screenplay.Ability;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.io.File;
+
 public class UseHealenium implements Ability {
 
     public static BrowseTheWeb withSelfHealingDriver() {
 
-        System.setProperty("heal.server.url", "https://f344-191-156-44-110.ngrok-free.app");
-
         WebDriverManager.chromedriver().setup();
         WebDriver delegate = new ChromeDriver(); // WebDriver base
-        WebDriver driverAutoCorrector = SelfHealingDriver.create(delegate); // WebDriver con Healenium
+
+        Config config = ConfigFactory.parseFile(new File("src\\test\\resources\\healenium.properties"));
+
+        //WebDriver driverAutoCorrector = SelfHealingDriver.create(delegate, config);
+        //WebDriver driverAutoCorrector = SelfHealingDriver.create(delegate); // WebDriver con Healenium
+        SelfHealingDriver driverAutoCorrector = SelfHealingDriver.create(delegate, config);
+
+
         return BrowseTheWeb.with(driverAutoCorrector);
 
 
