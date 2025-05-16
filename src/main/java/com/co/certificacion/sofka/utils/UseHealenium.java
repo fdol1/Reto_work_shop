@@ -22,7 +22,7 @@ public class UseHealenium implements Ability {
         WebDriver delegate = new ChromeDriver();
 
         if(ejecucionEnPipeline()){
-            String configString =  SERVER_URL + System.getProperty(URL_REMOTA_HEALENIUM_BACKEND) ;
+            String configString =  SERVER_URL +" \"" + System.getProperty(URL_REMOTA_HEALENIUM_BACKEND) + "\"";
             config = ConfigFactory.parseString(configString);
         }else {
             config = ConfigFactory.parseFile(new File(URL_LOCAL_HEALENIUM_BACKEND));
