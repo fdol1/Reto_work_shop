@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
 
-import static com.co.certificacion.sofka.utils.Constantes.URL_BACKEND_HEALENIUM;
+import static com.co.certificacion.sofka.utils.Constantes.*;
 
 public class UseHealenium implements Ability {
 
@@ -19,12 +19,14 @@ public class UseHealenium implements Ability {
 
         WebDriverManager.chromedriver().setup();
         WebDriver delegate = new ChromeDriver(); // WebDriver base
-        System.out.println("Healenium URL: " + System.getProperty("url_healenium_backend"));
+        Config config;
 
-        //Config config = ConfigFactory.parseFile(new File(URL_BACKEND_HEALENIUM));
-
-        String configString = "hlm.server.url = \"" + System.getProperty("url_healenium_backend") + "\"";
-        Config config = ConfigFactory.parseString(configString);
+        if(System.getProperty(URL_REMOTA_HEALENIUM_BACKEND) == null){
+            config = ConfigFactory.parseFile(new File(URL_LOCAL_HEALENIUM_BACKEND));
+        }else{
+            String configString =  SERVER_URL +" \"" + System.getProperty(URL_REMOTA_HEALENIUM_BACKEND) + "\"";
+            config = ConfigFactory.parseString(configString);
+        }
 
         //WebDriver driverAutoCorrector = SelfHealingDriver.create(delegate); // Ejecución local
         SelfHealingDriver driverAutoCorrector = SelfHealingDriver.create(delegate, config);

@@ -25,7 +25,9 @@ public class Constantes {
     public static final String KEY_NOMBRE2 = "nombre2";
     public static final String KEY_CODIGO_POSTAL = "codigoPostal";
     public static boolean PERMITIR_IA = true;
-    public static final String URL_BACKEND_HEALENIUM = "src/test/resources/healenium.properties";
+    public static final String URL_LOCAL_HEALENIUM_BACKEND = "src/test/resources/healenium.properties";
+    public static final String URL_REMOTA_HEALENIUM_BACKEND = "url_healenium_backend";
+    public static final String SERVER_URL = "hlm.server.url =";
 
 
 
