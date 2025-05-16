@@ -27,7 +27,6 @@ public class UseHealenium implements Ability {
         }else {
             config = ConfigFactory.parseFile(new File(URL_LOCAL_HEALENIUM_BACKEND));
         }
-
         //WebDriver driverAutoCorrector = SelfHealingDriver.create(delegate); // Ejecución local
         SelfHealingDriver driverAutoCorrector = SelfHealingDriver.create(delegate, config);
         return BrowseTheWeb.with(driverAutoCorrector);
