@@ -17,7 +17,6 @@ public class Hooks {
     @Before
     public void configuracionInicial() {
         WebDriverManager.chromedriver().setup();
-
         OnStage.setTheStage(new OnlineCast());
 
         if (PERMITIR_IA) {
