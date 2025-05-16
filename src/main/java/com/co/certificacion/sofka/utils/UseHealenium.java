@@ -12,20 +12,20 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.io.File;
 
 import static com.co.certificacion.sofka.utils.Constantes.*;
+import static com.co.certificacion.sofka.utils.Utils.ejecucionEnPipeline;
 
 public class UseHealenium implements Ability {
 
     public static BrowseTheWeb withSelfHealingDriver() {
 
-        WebDriverManager.chromedriver().setup();
-        WebDriver delegate = new ChromeDriver(); // WebDriver base
         Config config;
+        WebDriver delegate = new ChromeDriver();
 
-        if(System.getProperty(URL_REMOTA_HEALENIUM_BACKEND) == null){
-            config = ConfigFactory.parseFile(new File(URL_LOCAL_HEALENIUM_BACKEND));
-        }else{
+        if(ejecucionEnPipeline()){
             String configString =  SERVER_URL +" \"" + System.getProperty(URL_REMOTA_HEALENIUM_BACKEND) + "\"";
             config = ConfigFactory.parseString(configString);
+        }else {
+            config = ConfigFactory.parseFile(new File(URL_LOCAL_HEALENIUM_BACKEND));
         }
 
         //WebDriver driverAutoCorrector = SelfHealingDriver.create(delegate); // Ejecución local

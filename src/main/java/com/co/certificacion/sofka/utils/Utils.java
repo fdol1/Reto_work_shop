@@ -74,5 +74,13 @@ public class Utils {
         return datosInfoPersonalModelList.get(0);
     }
 
+    public static boolean ejecucionEnPipeline(){
+        boolean isPipeline = true;
+        if (System.getProperty(URL_REMOTA_HEALENIUM_BACKEND) == null){
+            isPipeline = false;
+        }
+        return isPipeline;
+    }
+
 
 }
