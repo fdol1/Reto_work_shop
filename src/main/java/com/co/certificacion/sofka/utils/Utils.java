@@ -8,8 +8,11 @@ import com.co.certificacion.sofka.exceptions.Exceptions;
 import com.co.certificacion.sofka.model.DatosProductoModel;
 import com.co.certificacion.sofka.model.InfoPersonalModel;
 import com.co.certificacion.sofka.model.InicioDeSesionModel;
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
 import io.cucumber.datatable.DataTable;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -80,6 +83,17 @@ public class Utils {
             isPipeline = false;
         }
         return isPipeline;
+    }
+
+    public static Config obtenerRuta(){
+        Config config;
+        if (System.getProperty(URL_REMOTA_HEALENIUM_BACKEND) == null){
+            config = ConfigFactory.parseFile(new File(URL_LOCAL_HEALENIUM_BACKEND));
+        }else{
+            String configString =  SERVER_URL +" \"" + System.getProperty(URL_REMOTA_HEALENIUM_BACKEND) + "\"";
+            config = ConfigFactory.parseString(configString);
+        }
+        return config;
     }
 
 
